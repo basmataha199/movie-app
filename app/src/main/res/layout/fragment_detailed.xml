@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingTop="30dip"
+    android:background="#FFFFFF">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:paddingTop="30dip" >
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#581845"
+            android:padding="15dp">
+            <TextView
+                android:id="@+id/movie_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_centerVertical="true"
+                android:textColor="#d4bdf1"
+                android:typeface="sans"
+                android:textSize="40dip"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="sans-serif-medium"
+                android:padding="5dp"/>
+        </RelativeLayout>
+
+        <LinearLayout android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/poster"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"/>
+
+            <LinearLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView android:textColor="#8203bd"
+                    android:id="@+id/rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rate: "
+                    android:fontFamily="sans-serif-condensed"
+                    android:textSize="20dip"
+                    android:padding="5dp" />
+
+                <TextView android:textColor="#8203bd"
+                    android:id="@+id/release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Release Date: "
+                    android:fontFamily="sans-serif-condensed"
+                    android:padding="5dp"
+                    android:textSize="20dip" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fav_but"
+                    android:src="@drawable/fav"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView android:textColor="#353337"
+            android:id="@+id/overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Overview"
+            android:textSize="20dip"
+            android:fontFamily="sans-serif-condensed"
+            android:padding="5dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+        <TextView android:textColor="#800ba0"
+            android:id="@+id/trailers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trailers:"
+            android:fontFamily="sans-serif-light"
+            android:padding="5dp"
+            android:textSize="25dip"/>
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:id="@+id/trailers_list"
+            android:padding="7dp"/>
+
+        <TextView android:textColor="#800ba0"
+            android:id="@+id/reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reviews:"
+            android:fontFamily="sans-serif-light"
+            android:padding="5dp"
+            android:textSize="25dip"/>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:id="@+id/reviews_list"
+            android:padding="7dp"/>
+
+    </LinearLayout>
+</ScrollView>

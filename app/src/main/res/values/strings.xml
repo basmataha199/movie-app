@@ -1,4 +1,15 @@
 <resources>
-    <string name="app_name">Movie Application</string>
+    <string name="app_name">Popular Movies</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_detailed"></string>
+    <string name="title_activity_settings">Settings</string>
+    <!--For the settings activity components-->
+    <string name="movies_sort_by">Sort Movies By: </string>
+    <string name="pref_sort_key" translatable="false">sort</string>
+    <string name="pref_label_most_popular">Most Popular</string>
+    <string name="pref_label_top_rated">Top Rated</string>
+    <string name="pref_label_favourite">Favourite</string>
+    <string name="pref_most_popular">popularity</string>
+    <string name="pref_top_rated">top_rated</string>
+    <string name="pref_favourite">favourite</string>
 </resources>

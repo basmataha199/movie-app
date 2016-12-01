@@ -1,20 +1,24 @@
 package app.movie.android.com.movieapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends AppCompatActivity implements MainActivityFragment.Callback {
+    private static final String DETAILFRAGMENT_TAG = "DFTAG";
+    private boolean mTwoPane;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Add action bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -26,6 +30,24 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        if (findViewById(R.id.movie_detail_container) != null) {
+            // The detail container view will be present only in the large-screen layouts
+            // (res/layout-sw600dp). If this view is present, then the activity should be
+            // in two-pane mode.
+            mTwoPane = true;
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            if (savedInstanceState == null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.movie_detail_container, new DetailedFragment(),
+                                DETAILFRAGMENT_TAG)
+                        .commit();
+            }
+        } else {
+            mTwoPane = false;
+        }
     }
 
     @Override
@@ -44,9 +66,39 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemSelected(int position, ImageAdapter moviesAdapter, boolean isFav) {
+        Movie selectedMovie = moviesAdapter.getMovies().get(position);
+        if(mTwoPane) {
+            // In 2-Pane mode show teh detail view in theis activity,
+            // by adding or replacing the detail fragment using
+            // a fragment transaction
+
+            /* Send selected movie data to Detail fragment using bundle */
+            Bundle args = new Bundle();
+            args.putSerializable(Movie.MOVIE_TAG, selectedMovie);
+            args.putBoolean("Favourite", isFav);
+
+            DetailedFragment fragment = new DetailedFragment();
+            fragment.setArguments(args);
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.movie_detail_container, fragment, DETAILFRAGMENT_TAG)
+                    .addToBackStack(DETAILFRAGMENT_TAG)
+                    .commit();
+        }
+        else {
+            Intent detailActivity = new Intent(this, DetailedActivity.class)
+                    .putExtra("Selected Movie", selectedMovie)
+                    .putExtra("Favourite", isFav);
+            startActivity(detailActivity);
+        }
     }
 }
